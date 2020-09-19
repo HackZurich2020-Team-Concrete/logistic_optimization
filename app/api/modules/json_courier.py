@@ -16,16 +16,19 @@ import json
 import sys
 from contextlib import suppress
 from pathlib import Path
-
+from os.path import dirname, realpath
 
 class JsonCourier:
-    def __init__(self, json_path):
-        self.json_path = json_path
+    def __init__(self, json_folder):
+        self.json_folder = json_folder
 
     # loads data from json file and returns it as Dict
-    def get_dict_from_json(self):
+    def get_dict_from_json(self, file_name):
+        file_path_string = self.json_folder + file_name
+        print(file_path_string)
+        file_path = Path(dirname(realpath(sys.argv[0]))) / file_path_string
         loaded_dict = {}
         with suppress(OSError):
-            with self.json_path.open() as f:
+            with file_path.open() as f:
                 loaded_dict = json.load(f)
         return loaded_dict

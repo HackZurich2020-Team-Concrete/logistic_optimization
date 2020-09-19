@@ -4,3 +4,4 @@ flask==1.1.2
 werkzeug==1.0.1
 googlemaps==4.4.2
 numpy==1.19.2
+responses==0.12.0 

@@ -8,11 +8,10 @@ EXPOSE 8080
 
 # Install bjoern and dependencies for install (we need to keep libev)
 RUN apk add --no-cache --virtual .deps \
-        musl-dev gcc git && \
+    musl-dev gcc git && \
     apk add --no-cache libev-dev && \
     apk add --no-cache libffi-dev libressl-dev && \
     pip install bjoern
-
 # Copy files to /app directory, install requirements
 COPY ./ /app
 

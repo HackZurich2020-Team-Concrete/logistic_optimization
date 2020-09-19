@@ -24,21 +24,20 @@ def test():
 @api_bp.route('/', methods=['GET'])
 def main():
 
-    # jsonCourier = JsonCourier('app/api/test_offers_json/')
-    # demanders_dict = jsonCourier.get_dict_from_json('demanders.json')
-    # demanders_list = demanders_dict['DemandRequests']
-    # suppliers_dict = jsonCourier.get_dict_from_json('suppliers.json')
-    # suppliers_list = suppliers_dict['SupplyOffers']
-    # print(demanders_list, flush=True)
-    # print(suppliers_list, flush=True)
-
-    # for demander in demanders_list:
-    #     travel_time = gmapsClient.predict_travel_time(suppliers_list[0],
-    #                                                   demander)
-    #     print(travel_time, flush=True)
+    jsonCourier = JsonCourier('app/api/test_offers_json/')
+    demanders_list = jsonCourier.get_dict_from_json('demanders.json')
+    suppliers_list = jsonCourier.get_dict_from_json('suppliers.json')
+    print(demanders_list, flush=True)
+    print(suppliers_list, flush=True)
 
     gmapsClient = GMapsClient()
-    gmapsClient.calculate()
+
+    for demander in demanders_list:
+        travel_time = gmapsClient.predict_travel_time_test(
+            suppliers_list[0], demander)
+        print(travel_time, flush=True)
+
+    # directions_result = gmapsClient.predict_travel_time()
     # print(gmaps_data, flush=True)
 
     data = {"items": [], "total": 0}

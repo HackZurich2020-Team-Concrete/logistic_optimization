@@ -18,9 +18,24 @@ class GMapsClient():
         self.key = "AIzaSyAawqXhPMAidvfDLqPs_cRn9gXVPsT59bs"
         self.gmaps = googlemaps.Client(self.key)
 
+    def _format_coordinates(self, trader_dict):
+        latitude = trader_dict['locationN']
+        longitude = trader_dict['locationE']
+        location_str = str(latitude) + "," + str(longitude)
+        return location_str
+
     def predict_travel_time_test(self, supplier_dict, demander_dict):
 
-        travel_time = 1
+        now = datetime.now()
+        directions_result = self.gmaps.directions(
+            origin=self._format_coordinates(supplier_dict),
+            destination=self._format_coordinates(demander_dict),
+            mode="driving",
+            avoid=["ferries"],
+            departure_time=now)
+        print(type(directions_result), flush=True)
+        # travel time in seconds
+        travel_time = directions_result[0]["legs"][0]["duration"]["value"]
         return travel_time
 
     # @responses.activate
@@ -30,10 +45,15 @@ class GMapsClient():
         #     (48.75958376, 9.16500092))
 
         now = datetime.now()
-        directions_result = self.gmaps.directions("Sydney Town Hall",
-                                                  "Parramatta, NSW",
-                                                  mode="driving",
-                                                  departure_time=now)
+        directions_result = self.gmaps.directions(
+            origin="41.43206,-81.38992",
+            destination="41.43706,-81.38792",
+            mode="driving",
+            avoid=["ferries"],
+            departure_time=now)
         print(type(directions_result), flush=True)
-        print(directions_result, flush=True)
+        # travel time in seconds
+        travel_time = directions_result[0]["legs"][0]["duration"]["value"]
+        # travel_time = travel_time["legs"]
+        print(travel_time, flush=True)
         return directions_result

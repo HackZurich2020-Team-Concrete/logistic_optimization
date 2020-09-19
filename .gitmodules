@@ -1,0 +1,6 @@
+[submodule "test_offers_json"]
+	path = test_offers_json
+	url = git@github.com:HackZurich2020-Team-Concrete/test_offers_json.git
+[submodule "app/api/test_offers_json"]
+	path = app/api/test_offers_json
+	url = git@github.com:HackZurich2020-Team-Concrete/test_offers_json.git

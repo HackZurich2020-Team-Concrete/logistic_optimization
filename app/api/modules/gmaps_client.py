@@ -8,36 +8,32 @@ import googlemaps
 from datetime import datetime
 from datetime import datetime
 from datetime import timedelta
+# from . import TestCase
 import time
 import responses
 
 
-class GMapsClient:
+class GMapsClient():
     def __init__(self):
         self.key = "AIzaSyAawqXhPMAidvfDLqPs_cRn9gXVPsT59bs"
-        gmaps = googlemaps.Client(key=self.key)
+        self.gmaps = googlemaps.Client(self.key)
 
-    def predict_travel_time(self, supplier_dict, demander_dict):
+    def predict_travel_time_test(self, supplier_dict, demander_dict):
 
         travel_time = 1
         return travel_time
 
-    @responses.activate
-    def test_simple_directions(self):
-        responses.add(
-            responses.GET,
-            "https://maps.googleapis.com/maps/api/directions/json",
-            body='{"status":"OK","routes":[]}',
-            status=200,
-            content_type="application/json",
-        )
+    # @responses.activate
+    def predict_travel_time(self):
 
-        # Simplest directions request. Driving directions by default.
-        routes = self.client.directions("Sydney", "Melbourne")
+        # reverse_geocode_result = self.gmaps.reverse_geocode(
+        #     (48.75958376, 9.16500092))
 
-        self.assertEqual(1, len(responses.calls))
-        self.assertURLEqual(
-            "https://maps.googleapis.com/maps/api/directions/json"
-            "?origin=Sydney&destination=Melbourne&key=%s" % self.key,
-            responses.calls[0].request.url,
-        )
+        now = datetime.now()
+        directions_result = self.gmaps.directions("Sydney Town Hall",
+                                                  "Parramatta, NSW",
+                                                  mode="driving",
+                                                  departure_time=now)
+        print(type(directions_result), flush=True)
+        print(directions_result, flush=True)
+        return directions_result

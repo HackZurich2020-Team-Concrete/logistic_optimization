@@ -16,24 +16,30 @@ from .modules import JsonCourier
 from .modules import GMapsClient
 
 
+@api_bp.route('/test', methods=['GET'])
+def test():
+    return "test"
+
+
 @api_bp.route('/', methods=['GET'])
 def main():
 
-    jsonCourier = JsonCourier('app/api/test_offers_json/')
-    demanders_dict = jsonCourier.get_dict_from_json('demanders.json')
-    demanders_list = demanders_dict['DemandRequests']
-    suppliers_dict = jsonCourier.get_dict_from_json('suppliers.json')
-    suppliers_list = suppliers_dict['SupplyOffers']
-    print(demanders_list, flush=True)
-    print(suppliers_list, flush=True)
+    # jsonCourier = JsonCourier('app/api/test_offers_json/')
+    # demanders_dict = jsonCourier.get_dict_from_json('demanders.json')
+    # demanders_list = demanders_dict['DemandRequests']
+    # suppliers_dict = jsonCourier.get_dict_from_json('suppliers.json')
+    # suppliers_list = suppliers_dict['SupplyOffers']
+    # print(demanders_list, flush=True)
+    # print(suppliers_list, flush=True)
+
+    # for demander in demanders_list:
+    #     travel_time = gmapsClient.predict_travel_time(suppliers_list[0],
+    #                                                   demander)
+    #     print(travel_time, flush=True)
 
     gmapsClient = GMapsClient()
-    for demander in demanders_list:
-        travel_time = gmapsClient.predict_travel_time(suppliers_list[0],
-                                                      demander)
-        print(travel_time, flush=True)
-
-    gmapsClient.test_simple_directions()
+    gmapsClient.calculate()
+    # print(gmaps_data, flush=True)
 
     data = {"items": [], "total": 0}
     data['items'].append({'name': 'Gerd'})

@@ -14,6 +14,7 @@ import time
 
 from .modules import JsonCourier
 from .modules import GMapsClient
+from .modules import Optimizer
 
 
 @api_bp.route('/test', methods=['GET'])
@@ -31,11 +32,13 @@ def main():
     print(suppliers_list, flush=True)
 
     gmapsClient = GMapsClient()
+    optimizer = Optimizer()
+    optimizer.start_optimization(demanders_list, suppliers_list)
 
-    for demander in demanders_list:
-        travel_time = gmapsClient.predict_travel_time_test(
-            suppliers_list[0], demander)
-        print(travel_time, flush=True)
+    # for demander in demanders_list:
+    #     travel_time = gmapsClient.predict_travel_time_test(
+    #         suppliers_list[0], demander)
+    #     print(travel_time, flush=True)
 
     # directions_result = gmapsClient.predict_travel_time()
     # print(gmaps_data, flush=True)

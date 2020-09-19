@@ -25,8 +25,11 @@ class JsonCourier:
     # loads data from json file and returns it as Dict
     def get_dict_from_json(self, file_name):
         file_path_string = self.json_folder + file_name
+        # file_path_string = file_path_string[1:]
         print(file_path_string)
         file_path = Path(dirname(realpath(sys.argv[0]))) / file_path_string
+        # file_path = file_path[1:]
+        print(file_path)
         loaded_dict = {}
         with suppress(OSError):
             with file_path.open() as f:

@@ -19,13 +19,9 @@ from .modules import JsonCourier
 @api_bp.route('/', methods=['GET'])
 def main():
 
-    jsonCourier = JsonCourier('test_offers_json/')
+    jsonCourier = JsonCourier('app/api/test_offers_json/')
     demanders_dict = jsonCourier.get_dict_from_json('demanders.json')
     print(demanders_dict, flush=True)
-
-
-
-
 
 
     data = 	{

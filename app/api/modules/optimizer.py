@@ -26,7 +26,7 @@ class Optimizer():
                     cost_matrix[row, col] = 0
                 else:
                     current_travel_time = self.gmapsClient.predict_travel_time(
-                        demanders_list[row - 1], demanders_list[row])
+                        demanders_list[col - 1], demanders_list[row])
                     cost_matrix[
                         row,
                         col] = current_demander_asphalt_demand / current_travel_time

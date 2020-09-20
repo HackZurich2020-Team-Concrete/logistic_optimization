@@ -6,28 +6,31 @@ __license__ = "GPL"
 
 from flask import current_app, jsonify
 from . import api_bp
-
+from flask import request
 import sys
 from os.path import dirname, realpath
 from pathlib import Path
 import time
-
+import requests
 from .modules import JsonCourier
 from .modules import GMapsClient
 from .modules import Optimizer
 
 
-@api_bp.route('/test', methods=['GET'])
-def test():
-    return "test"
+@api_bp.route('/test2',methods=['POST'])
+def createUser():
+    return request.json
 
+@api_bp.route('/')
+def calculateLoc():
+    return {"test":"test"}
 
-@api_bp.route('/', methods=['GET'])
+@api_bp.route('/calculate', methods=['POST'])
 def main():
+    dataFromCall=request.json
 
-    jsonCourier = JsonCourier('app/api/test_offers_json/')
-    demanders_list = jsonCourier.get_dict_from_json('demanders.json')
-    suppliers_list = jsonCourier.get_dict_from_json('suppliers.json')
+    demanders_list = dataFromCall['demanders']
+    suppliers_list = dataFromCall['suppliers']
     print(demanders_list, flush=True)
     print(suppliers_list, flush=True)
 

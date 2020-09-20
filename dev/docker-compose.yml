@@ -1,7 +1,7 @@
 version: "3"
 services:
   backend-dev:
-    container_name: backend-dev
+    container_name: logistic_optimization
     build:
       context: ../
       dockerfile: ./dev/Dockerfile

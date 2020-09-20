@@ -1,10 +1,17 @@
 version: "3"
 services:
   backend:
-    container_name: backend
+    container_name: logistic_optimization
     build:
       context: .
     volumes:
       - .:/app
+    networks:
+      - concrete-net
     ports:
       - 8080:8080
+      
+networks:
+  concrete-net:
+    external: true
+

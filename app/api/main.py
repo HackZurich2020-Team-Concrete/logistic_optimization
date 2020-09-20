@@ -28,8 +28,8 @@ def main():
     jsonCourier = JsonCourier('app/api/test_offers_json/')
     demanders_list = jsonCourier.get_dict_from_json('demanders.json')
     suppliers_list = jsonCourier.get_dict_from_json('suppliers.json')
-    print(demanders_list, flush=True)
-    print(suppliers_list, flush=True)
+    # print(demanders_list, flush=True)
+    # print(suppliers_list, flush=True)
 
     gmapsClient = GMapsClient()
     optimizer = Optimizer()

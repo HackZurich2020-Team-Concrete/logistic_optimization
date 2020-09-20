@@ -17,14 +17,19 @@ class Optimizer():
             current_demander_asphalt_demand = current_demander["amount"]
             for col in list(range(0, demander_count + 1)):
                 if (col == 0):
-                    current_travel_time = self.gmapsClient.predict_travel_time(suppliers_list, current_demander)
-                    cost_matrix[row, col = current_demander_asphalt_demand/current_travel_time]
-                else if(row == col -1):
-                    cost_matrix[row, col = 0
+                    current_travel_time = self.gmapsClient.predict_travel_time(
+                        suppliers_list[0], current_demander)
+                    cost_matrix[
+                        row,
+                        col] = current_demander_asphalt_demand / current_travel_time
+                elif (col == row + 1):
+                    cost_matrix[row, col] = 0
                 else:
-                    current_travel_time = self.gmapsClient.predict_travel_time(suppliers_list, current_demander)
-
-
+                    current_travel_time = self.gmapsClient.predict_travel_time(
+                        demanders_list[row - 1], demanders_list[row])
+                    cost_matrix[
+                        row,
+                        col] = current_demander_asphalt_demand / current_travel_time
 
         return cost_matrix
 
@@ -41,7 +46,7 @@ class Optimizer():
         cost_matrix = self.construct_cost_matrix(demanders_list,
                                                  suppliers_list)
         cost_sum_matrix = np.zeros(all_combos.shape)
-        print(cost_sum_matrix, flush=True)
+        print(cost_matrix, flush=True)
         num_rows, num_cols = cost_sum_matrix.shape
         print(cost_sum_matrix.shape[0], flush=True)
         print(list(range(0, num_rows)), flush=True)

@@ -1,7 +1,7 @@
 """predicts the truck travel time between two decimal degree coordinates"""
 
 __author__ = "Manuel Galliker"
-__maintainer__ = "Manuel Galliker, Fabian Kaiser"
+__maintainer__ = "Manuel Galliker"
 __license__ = "GPL"
 
 import googlemaps

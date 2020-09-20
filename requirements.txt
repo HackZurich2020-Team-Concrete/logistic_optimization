@@ -5,3 +5,4 @@ werkzeug==1.0.1
 googlemaps==4.4.2
 numpy==1.19.2
 responses==0.12.0 
+cvxpy==1.1

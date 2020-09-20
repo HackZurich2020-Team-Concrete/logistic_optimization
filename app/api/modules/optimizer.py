@@ -1,6 +1,7 @@
 import itertools
 import numpy as np
 from . import GMapsClient
+import cvxpy
 
 
 class Optimizer():

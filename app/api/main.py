@@ -1,11 +1,12 @@
 """Main file for local testing"""
 
 __author__ = "Manuel Galliker"
-__maintainer__ = "Manuel Galliker, Fabian Kaiser"
+__maintainer__ = "Manuel Galliker"
 __license__ = "GPL"
 
 from flask import current_app, jsonify
 from . import api_bp
+import cvxpy
 
 import sys
 from os.path import dirname, realpath
